@@ -20,4 +20,8 @@ describe("Calculator functions", () => {
   it("should accept newline as valid delimiter", () => {
     expect(addNumbers("1,2\n3")).toEqual(6);
   });
+
+  it("should accept custom delimiter syntax", () => {
+    expect(addNumbers("//;\n1;2;3")).toBe(6);
+  });
 });

@@ -3,21 +3,28 @@ export function addNumbers(numbers: string) {
     return 0;
   }
 
-  if (numbers.includes(",")) {
-    const tokens: string[] = tokenize(numbers);
+  const tokens: string[] = tokenize(numbers);
 
-    let sum = 0;
+  let sum = 0;
+  tokens.forEach((token) => (sum += parseInt(token)));
 
-    console.log(tokens);
-
-    tokens.forEach((token) => (sum += parseInt(token)));
-
-    return sum;
-  }
-
-  return parseInt(numbers);
+  return sum;
 }
 
 function tokenize(numbers: string) {
+  if (numbers.includes("//")) {
+    const match = numbers.match("//(.)\n(.*)");
+    const limiter = match!.groups ?? [0];
+
+    if (match) {
+      const customDelimiter = match[1];
+      const newNumbers = match[2];
+
+      return newNumbers.split(customDelimiter);
+    }
+  }
+
   return numbers.split(/,|\n/);
 }
+
+console.log(addNumbers("//;\n1;2;3"));
