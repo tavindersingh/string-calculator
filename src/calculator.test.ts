@@ -8,4 +8,8 @@ describe("Calculator functions", () => {
   it("should return the number when single number is passed", () => {
     expect(addNumbers("5")).toEqual(5);
   });
+
+  it("should return the sum of two numbers delimited by comma", () => {
+    expect(addNumbers("4,5")).toEqual(9);
+  });
 });
