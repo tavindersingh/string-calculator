@@ -11,20 +11,31 @@ export function addNumbers(numbers: string) {
   return sum;
 }
 
-function tokenize(numbers: string) {
-  if (numbers.includes("//")) {
-    const match = numbers.match("//(.)\n(.*)");
-    const limiter = match!.groups ?? [0];
-
-    if (match) {
-      const customDelimiter = match[1];
-      const newNumbers = match[2];
-
-      return newNumbers.split(customDelimiter);
-    }
+function tokenize(numbers: string): string[] {
+  if (usesCustomDelimiterSyntax(numbers)) {
+    return splitUsingCustomDelimiter(numbers);
   }
 
-  return numbers.split(/,|\n/);
+  return splitUsingNewLineAndComma(numbers);
 }
 
-console.log(addNumbers("//;\n1;2;3"));
+function usesCustomDelimiterSyntax(numbers: string) {
+  return numbers.includes("//");
+}
+
+function splitUsingCustomDelimiter(numbers: string) {
+  const match = numbers.match("//(.)\n(.*)");
+
+  if (match) {
+    const customDelimiter = match[1];
+    const newNumbers = match[2];
+
+    return newNumbers.split(customDelimiter);
+  }
+
+  return [];
+}
+
+function splitUsingNewLineAndComma(numbers: string) {
+  return numbers.split(/,|\n/);
+}
