@@ -1,1 +1,3 @@
-export default function calculate(numbers: string) {}
+export function addNumbers(numbers: string) {
+    return 0
+}
