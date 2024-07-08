@@ -16,4 +16,8 @@ describe("Calculator functions", () => {
   it("should return sum on multiple numbers", () => {
     expect(addNumbers("1,2,3")).toEqual(6);
   });
+
+  it("should accept newline as valid delimiter", () => {
+    expect(addNumbers("1,2\n3")).toEqual(6);
+  });
 });

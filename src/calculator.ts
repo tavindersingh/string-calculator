@@ -4,7 +4,7 @@ export function addNumbers(numbers: string) {
   }
 
   if (numbers.includes(",")) {
-    const tokens: string[] = numbers.split(",");
+    const tokens: string[] = tokenize(numbers);
 
     let sum = 0;
 
@@ -16,4 +16,8 @@ export function addNumbers(numbers: string) {
   }
 
   return parseInt(numbers);
+}
+
+function tokenize(numbers: string) {
+  return numbers.split(/,|\n/);
 }
