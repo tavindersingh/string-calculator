@@ -7,11 +7,7 @@ export function addNumbers(numbers: string) {
 
   const numberTokens = tokens.map((token) => parseInt(token));
 
-  const negativeNumbers = numberTokens.filter((token) => token < 0);
-
-  if (negativeNumbers.length > 0) {
-    throw new Error();
-  }
+  ensureAllNonNegativeNumbers(numberTokens);
 
   let sum = 0;
   numberTokens.forEach((token) => (sum += token));
@@ -46,4 +42,13 @@ function splitUsingCustomDelimiter(numbers: string) {
 
 function splitUsingNewLineAndComma(numbers: string) {
   return numbers.split(/,|\n/);
+}
+
+function ensureAllNonNegativeNumbers(numberTokens: number[]) {
+  const negativeNumbers = numberTokens.filter((token) => token < 0);
+
+  if (negativeNumbers.length > 0) {
+    const negativeNumbersString = negativeNumbers.join(",");
+    throw new Error(`Negative numbers not allowed: ${negativeNumbersString}`);
+  }
 }

@@ -28,4 +28,10 @@ describe("Calculator functions", () => {
   it("should raise exception on negative numbers", () => {
     expect(() => addNumbers("1,2,-3")).toThrow();
   });
+
+  it("exception message should contains negative numbers", () => {
+    expect(() => addNumbers("1,2,-3,-4")).toThrow(
+      "Negative numbers not allowed: -3,-4"
+    );
+  });
 });
