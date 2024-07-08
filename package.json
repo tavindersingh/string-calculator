@@ -1,9 +1,10 @@
 {
   "name": "string_calculator_tdd",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "src/calculator.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npx tsc"
   },
   "keywords": [],
   "author": "",
