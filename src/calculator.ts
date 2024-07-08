@@ -6,7 +6,13 @@ export function addNumbers(numbers: string) {
   if (numbers.includes(",")) {
     const tokens: string[] = numbers.split(",");
 
-    return parseInt(tokens[0]) + parseInt(tokens[1]);
+    let sum = 0;
+
+    console.log(tokens);
+
+    tokens.forEach((token) => (sum += parseInt(token)));
+
+    return sum;
   }
 
   return parseInt(numbers);

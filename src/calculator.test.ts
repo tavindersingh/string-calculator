@@ -12,4 +12,8 @@ describe("Calculator functions", () => {
   it("should return the sum of two numbers delimited by comma", () => {
     expect(addNumbers("4,5")).toEqual(9);
   });
+
+  it("should return sum on multiple numbers", () => {
+    expect(addNumbers("1,2,3")).toEqual(6);
+  });
 });
