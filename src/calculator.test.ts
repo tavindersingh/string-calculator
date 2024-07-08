@@ -24,4 +24,8 @@ describe("Calculator functions", () => {
   it("should accept custom delimiter syntax", () => {
     expect(addNumbers("//;\n1;2;3")).toBe(6);
   });
+
+  it("should raise exception on negative numbers", () => {
+    expect(() => addNumbers("1,2,-3")).toThrow();
+  });
 });

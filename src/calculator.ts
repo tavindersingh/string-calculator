@@ -5,8 +5,16 @@ export function addNumbers(numbers: string) {
 
   const tokens: string[] = tokenize(numbers);
 
+  const numberTokens = tokens.map((token) => parseInt(token));
+
+  const negativeNumbers = numberTokens.filter((token) => token < 0);
+
+  if (negativeNumbers.length > 0) {
+    throw new Error();
+  }
+
   let sum = 0;
-  tokens.forEach((token) => (sum += parseInt(token)));
+  numberTokens.forEach((token) => (sum += token));
 
   return sum;
 }
