@@ -22,7 +22,7 @@ describe("Calculator functions", () => {
   });
 
   it("should accept custom delimiter syntax", () => {
-    expect(addNumbers("//;\n1;2;3")).toBe(6);
+    expect(addNumbers("//;\n1;2;3")).toEqual(6);
   });
 
   it("should raise exception on negative numbers", () => {
@@ -34,4 +34,10 @@ describe("Calculator functions", () => {
       "Negative numbers not allowed: -3,-4"
     );
   });
+
+  it("should ignore numbers more than 1000", () => {
+    expect(addNumbers("//;\n1;2;3;1001")).toEqual(6);
+  });
+
+  
 });

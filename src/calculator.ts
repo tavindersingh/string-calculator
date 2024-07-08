@@ -3,9 +3,7 @@ export function addNumbers(numbers: string) {
     return 0;
   }
 
-  const tokens: string[] = tokenize(numbers);
-
-  const numberTokens = tokens.map((token) => parseInt(token));
+  const numberTokens = parseNumbers(numbers);
 
   ensureAllNonNegativeNumbers(numberTokens);
 
@@ -51,4 +49,11 @@ function ensureAllNonNegativeNumbers(numberTokens: number[]) {
     const negativeNumbersString = negativeNumbers.join(",");
     throw new Error(`Negative numbers not allowed: ${negativeNumbersString}`);
   }
+}
+
+function parseNumbers(numbers: string): number[] {
+  const tokens: string[] = tokenize(numbers);
+  const numberTokens = tokens.map((token) => parseInt(token));
+
+  return numberTokens.filter((number) => number <= 1000);
 }
