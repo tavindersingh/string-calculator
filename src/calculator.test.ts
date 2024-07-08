@@ -39,5 +39,7 @@ describe("Calculator functions", () => {
     expect(addNumbers("//;\n1;2;3;1001")).toEqual(6);
   });
 
-  
+  it("should accept single delimiter of any length", () => {
+    expect(addNumbers("//[***]\n1***2***3")).toEqual(6);
+  });
 });

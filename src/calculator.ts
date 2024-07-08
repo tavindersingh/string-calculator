@@ -26,13 +26,20 @@ function usesCustomDelimiterSyntax(numbers: string) {
 }
 
 function splitUsingCustomDelimiter(numbers: string) {
-  const match = numbers.match("//(.)\n(.*)");
+  const match = numbers.match(/\/\/(\[.*?\]|.)\n(.*)/);
 
   if (match) {
-    const customDelimiter = match[1];
+    let customDelimiter = match[1];
     const newNumbers = match[2];
 
-    return newNumbers.split(customDelimiter);
+    // Remove square brackets if present
+    if (customDelimiter.startsWith('[') && customDelimiter.endsWith(']')) {
+      customDelimiter = customDelimiter.slice(1, -1);
+    }
+
+    const escapedDelimiter = customDelimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const delimiterRegex = new RegExp(escapedDelimiter, 'g');
+    return newNumbers.split(delimiterRegex);
   }
 
   return [];
